@@ -2,8 +2,6 @@
 // Uses Gemini 2.5 Flash API (free tier: 1,500 requests/day)
 // Get your API key: https://aistudio.google.com/app/apikey
 
-
-
 async function reviewCode() {
     const code = document.getElementById('code-input').value.trim();
     const language = document.getElementById('language').value;
@@ -32,22 +30,14 @@ async function reviewCode() {
     try {
         const prompt = buildPrompt(code, language, focusAreas);
         const response = await fetch('/api/review-code', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ prompt: prompt })
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: prompt })
         });
-        
+
         if (!response.ok) throw new Error('API Error');
-            const data = await response.json();
-            const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-        });
-
-        if (!response.ok) {
-            throw new Error(`API Error: ${response.status}`);
-        }
-
-        const data = await response.json();
-        const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+const data = await response.json();
+const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
         
         displayResults(parseResults(text, focusAreas));
         

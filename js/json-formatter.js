@@ -99,7 +99,7 @@ async function getAIExplanation(parsed) {
 
     const schema = JSON.stringify(parsed, null, 2).substring(0, 3000);
 
-    const response = await fetch('/api/explain-json', {
+    const response = await fetch('/API/explain-json.js', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({ schema: schema })
