@@ -95,34 +95,19 @@ async function explainJSON() {
 }
 
 async function getAIExplanation(parsed) {
-    const GEMINI_API_KEY = 'AQ.Ab8RN6KSTigsJsVVkC0TpOvv5ja6BtRJ4eg2aDEF2QCTCwvX6g';
-    const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+    
 
     const schema = JSON.stringify(parsed, null, 2).substring(0, 3000);
 
-    const response = await fetch(`${GEMINI_URL}?key=${GEMINI_API_KEY}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            contents: [{
-                parts: [{ text: `Explain this JSON schema in simple terms. For each top-level field, explain what it represents and its likely data type. Keep explanations concise (1 sentence each).
+    const response = await fetch('/api/explain-json', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ schema: schema })
+});
 
-JSON:
-${schema}
-
-Format as:
-• fieldName: explanation
-• fieldName: explanation` }]
-            }],
-            generationConfig: { temperature: 0.3, maxOutputTokens: 1024 }
-        })
-    });
-
-    if (!response.ok) throw new Error('API failed');
-
-    const data = await response.json();
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-
+if (!response.ok) throw new Error('API failed');
+const data = await response.json();
+const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
     // Convert bullet points to HTML
     return text.split('\n')
         .filter(line => line.trim().startsWith('•'))
