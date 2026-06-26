@@ -28,7 +28,7 @@ async function generateRegex() {
 
 async function getAIRegex(description) {
 
-const response = await fetch('/api/generate-regex', {
+const response = await fetch('/api/generate-regex.js', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({ description: description })
