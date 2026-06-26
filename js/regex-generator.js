@@ -27,34 +27,16 @@ async function generateRegex() {
 }
 
 async function getAIRegex(description) {
-    const GEMINI_API_KEY = 'AQ.Ab8RN6KSTigsJsVVkC0TpOvv5ja6BtRJ4eg2aDEF2QCTCwvX6g';
-    const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
-    const response = await fetch(`${GEMINI_URL}?key=${GEMINI_API_KEY}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            contents: [{
-                parts: [{ text: `Generate a JavaScript-compatible regular expression for: "${description}"
+const response = await fetch('/api/generate-regex', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ description: description })
+});
 
-Requirements:
-- Return ONLY the regex pattern (no slashes, no flags in the pattern itself)
-- Provide a brief explanation of how it works
-- Consider edge cases
-
-Format:
-PATTERN: [regex pattern here]
-EXPLANATION: [brief explanation]` }]
-            }],
-            generationConfig: { temperature: 0.2, maxOutputTokens: 512 }
-        })
-    });
-
-    if (!response.ok) throw new Error('API failed');
-
-    const data = await response.json();
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-
+if (!response.ok) throw new Error('API failed');
+const data = await response.json();
+const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
     const patternMatch = text.match(/PATTERN:\s*(.+)/);
     const explanationMatch = text.match(/EXPLANATION:\s*(.+)/);
 
