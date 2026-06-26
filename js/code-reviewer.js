@@ -2,8 +2,7 @@
 // Uses Gemini 2.5 Flash API (free tier: 1,500 requests/day)
 // Get your API key: https://aistudio.google.com/app/apikey
 
-const GEMINI_API_KEY = 'AQ.Ab8RN6KSTigsJsVVkC0TpOvv5ja6BtRJ4eg2aDEF2QCTCwvX6g'; // ← Replace this
-const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+
 
 async function reviewCode() {
     const code = document.getElementById('code-input').value.trim();
@@ -32,18 +31,15 @@ async function reviewCode() {
 
     try {
         const prompt = buildPrompt(code, language, focusAreas);
-        const response = await fetch(`${GEMINI_URL}?key=${GEMINI_API_KEY}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                contents: [{
-                    parts: [{ text: prompt }]
-                }],
-                generationConfig: {
-                    temperature: 0.2,
-                    maxOutputTokens: 2048
-                }
-            })
+        const response = await fetch('/api/review-code', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt: prompt })
+        });
+        
+        if (!response.ok) throw new Error('API Error');
+            const data = await response.json();
+            const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
         });
 
         if (!response.ok) {
