@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free AI Code Reviewer — Find Bugs & Optimize | AICodeKit</title>
+    <meta name="description" content="Paste your code and get instant AI-powered review. Detect bugs, security vulnerabilities, and performance issues. Supports JavaScript, Python, Go, and more. Free, no signup.">
+    <link rel="canonical" href="https://aicodekit.com/tools/code-reviewer.html">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">⚡ AICodeKit</a>
+            <button class="mobile-toggle" aria-label="Menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/tools/code-reviewer.html">Tools</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container tool-page">
+        <div class="tool-header">
+            <h1>🤖 AI Code Reviewer</h1>
+            <p>Paste your code and get instant AI-powered analysis. Find bugs, security issues, and performance bottlenecks before they hit production.</p>
+        </div>
+
+        <div class="tool-container">
+            <label for="code-input">Your Code</label>
+            <textarea id="code-input" placeholder="// Paste your JavaScript, Python, Go, or any code here...
+function calculateTotal(items) {
+    let total = 0;
+    for(let i=0; i<items.length; i++) {
+        total += items[i].price * items[i].qty;
+    }
+    return total;
+}"></textarea>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
+                <div>
+                    <label for="language">Language</label>
+                    <select id="language">
+                        <option value="auto">Auto-detect</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="typescript">TypeScript</option>
+                        <option value="python">Python</option>
+                        <option value="go">Go</option>
+                        <option value="java">Java</option>
+                        <option value="cpp">C++</option>
+                        <option value="rust">Rust</option>
+                        <option value="php">PHP</option>
+                        <option value="ruby">Ruby</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Focus Areas</label>
+                    <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 8px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-weight: normal; cursor: pointer;">
+                            <input type="checkbox" id="check-bugs" checked> Bugs
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-weight: normal; cursor: pointer;">
+                            <input type="checkbox" id="check-security" checked> Security
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-weight: normal; cursor: pointer;">
+                            <input type="checkbox" id="check-performance"> Performance
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-weight: normal; cursor: pointer;">
+                            <input type="checkbox" id="check-explain" checked> Explain
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn" id="review-btn" onclick="reviewCode()">
+                    🔍 Review Code
+                </button>
+                <button class="btn btn-secondary" onclick="clearAll()">
+                    Clear
+                </button>
+            </div>
+
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Analyzing your code with AI...</p>
+            </div>
+
+            <div class="error-msg"></div>
+
+            <div class="results" id="results">
+                <!-- Results injected here -->
+            </div>
+        </div>
+
+        <section style="margin-top: 60px;">
+            <h2>How It Works</h2>
+            <div class="features">
+                <div class="feature">
+                    <h4>1. Paste Your Code</h4>
+                    <p>Copy any code snippet and paste it into the editor above. We support 10+ programming languages.</p>
+                </div>
+                <div class="feature">
+                    <h4>2. AI Analyzes Instantly</h4>
+                    <p>Our AI scans for bugs, security issues, and performance problems in under 3 seconds.</p>
+                </div>
+                <div class="feature">
+                    <h4>3. Get Actionable Fixes</h4>
+                    <p>Receive specific line-by-line suggestions with corrected code you can copy and use immediately.</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-top: 60px;">
+            <h2>Why Use AI for Code Review?</h2>
+            <p style="color: var(--text-muted); margin-bottom: 16px;">
+                Manual code review is time-consuming and error-prone. AI-powered code review catches issues humans miss, 
+                enforces best practices consistently, and speeds up your development workflow by 10x. 
+                <a href="/blog/ai-code-review-guide.html">Read our complete guide →</a>
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>AICodeKit</h4>
+                    <p>Free AI-powered tools for developers who ship fast.</p>
+                </div>
+                <div>
+                    <h4>Tools</h4>
+                    <ul>
+                        <li><a href="/tools/code-reviewer.html">AI Code Reviewer</a></li>
+                        <li><a href="/tools/json-formatter.html">JSON Formatter</a></li>
+                        <li><a href="/tools/regex-generator.html">Regex Generator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy.html">Privacy Policy</a></li>
+                        <li><a href="/terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="copyright">© 2026 AICodeKit. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/code-reviewer.js"></script>
+</body>
+</html>
