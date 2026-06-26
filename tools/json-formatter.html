@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart JSON Formatter & AI Explainer | AICodeKit</title>
+    <meta name="description" content="Format messy JSON instantly with syntax highlighting. AI explains what each field means. Validate structure and catch errors. Free, no signup required.">
+    <link rel="canonical" href="https://aicodekit.com/tools/json-formatter.html">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">⚡ AICodeKit</a>
+            <button class="mobile-toggle" aria-label="Menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/tools/code-reviewer.html">Tools</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container tool-page">
+        <div class="tool-header">
+            <h1>📋 Smart JSON Formatter</h1>
+            <p>Format, validate, and understand JSON instantly. Paste messy JSON and get beautiful, highlighted output with AI-powered field explanations.</p>
+        </div>
+
+        <div class="tool-container">
+            <label for="json-input">Paste Your JSON</label>
+            <textarea id="json-input" placeholder='{"users":[{"id":1,"name":"John Doe","email":"john@example.com","isActive":true,"balance":1250.50}],"total":1,"page":1}'></textarea>
+
+            <div class="btn-group">
+                <button class="btn" onclick="formatJSON()">✨ Format JSON</button>
+                <button class="btn btn-secondary" onclick="explainJSON()">🤖 Explain Fields</button>
+                <button class="btn btn-secondary" onclick="minifyJSON()">🗜️ Minify</button>
+                <button class="btn btn-secondary" onclick="clearJSON()">Clear</button>
+            </div>
+
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Analyzing JSON structure...</p>
+            </div>
+
+            <div class="error-msg" id="json-error"></div>
+
+            <div id="json-output" class="json-output" style="display:none;"></div>
+
+            <div class="results" id="explanation-results" style="display:none;">
+                <h3>📖 Field Explanations</h3>
+                <div id="explanation-content"></div>
+            </div>
+        </div>
+
+        <section style="margin-top: 60px;">
+            <h2>Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <h4>🔧 Instant Formatting</h4>
+                    <p>Messy minified JSON becomes readable in one click with proper indentation.</p>
+                </div>
+                <div class="feature">
+                    <h4>🎨 Syntax Highlighting</h4>
+                    <p>Keys, strings, numbers, and booleans are color-coded for instant readability.</p>
+                </div>
+                <div class="feature">
+                    <h4>✅ Validation</h4>
+                    <p>Catch syntax errors before they break your API or application.</p>
+                </div>
+                <div class="feature">
+                    <h4>🤖 AI Explanations</h4>
+                    <p>Don't understand a schema? Our AI explains what each field represents.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>AICodeKit</h4>
+                    <p>Free AI-powered tools for developers who ship fast.</p>
+                </div>
+                <div>
+                    <h4>Tools</h4>
+                    <ul>
+                        <li><a href="/tools/code-reviewer.html">AI Code Reviewer</a></li>
+                        <li><a href="/tools/json-formatter.html">JSON Formatter</a></li>
+                        <li><a href="/tools/regex-generator.html">Regex Generator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy.html">Privacy Policy</a></li>
+                        <li><a href="/terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="copyright">© 2026 AICodeKit. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/json-formatter.js"></script>
+</body>
+</html>
