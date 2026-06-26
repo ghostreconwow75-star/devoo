@@ -27,16 +27,21 @@ async function generateRegex() {
 }
 
 async function getAIRegex(description) {
+    const response = await fetch('/api/generate-regex', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ description: description })
+    });
 
-const response = await fetch('/API/generate-regex.js', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ description: description })
-});
+    if (!response.ok) {
+        const errorText = await response.text();
+        console.error('API Error:', response.status, errorText);
+        throw new Error(`API failed: ${response.status}`);
+    }
 
-if (!response.ok) throw new Error('API failed');
-const data = await response.json();
-const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    const data = await response.json();
+    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+
     const patternMatch = text.match(/PATTERN:\s*(.+)/);
     const explanationMatch = text.match(/EXPLANATION:\s*(.+)/);
 
