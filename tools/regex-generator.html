@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Regex Generator — Write Regex from English | AICodeKit</title>
+    <meta name="description" content="Describe what you want in plain English. Get working regex with live testing and detailed explanation. Never memorize syntax again. Free, no signup.">
+    <link rel="canonical" href="https://aicodekit.com/tools/regex-generator.html">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">⚡ AICodeKit</a>
+            <button class="mobile-toggle" aria-label="Menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/tools/code-reviewer.html">Tools</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container tool-page">
+        <div class="tool-header">
+            <h1>🔍 AI Regex Generator</h1>
+            <p>Describe what you want to match in plain English. Get working regex with live testing and detailed explanation.</p>
+        </div>
+
+        <div class="tool-container">
+            <label for="regex-description">Describe your pattern</label>
+            <input type="text" id="regex-description" placeholder="e.g., Email addresses ending with .com or .org" style="font-family: var(--font);">
+
+            <div class="btn-group">
+                <button class="btn" onclick="generateRegex()">⚡ Generate Regex</button>
+                <button class="btn btn-secondary" onclick="clearRegex()">Clear</button>
+            </div>
+
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Generating regex with AI...</p>
+            </div>
+
+            <div class="error-msg"></div>
+
+            <div id="regex-result" style="display:none;">
+                <label>Generated Regex</label>
+                <div class="regex-output">
+                    <button class="copy-btn" onclick="copyToClipboard(document.getElementById('regex-pattern').textContent, this)">Copy</button>
+                    <span id="regex-pattern"></span>
+                </div>
+
+                <label>Explanation</label>
+                <div class="result-item" style="margin-top:8px;">
+                    <div class="result-text" id="regex-explanation"></div>
+                </div>
+
+                <div class="test-area">
+                    <label>Test Your Regex</label>
+                    <input type="text" class="test-input" id="test-input" placeholder="Type text to test against the regex..." oninput="testRegex()">
+                    <div class="test-results" id="test-results">
+                        <span class="no-match">Start typing to test matches...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section style="margin-top: 60px;">
+            <h2>Common Patterns</h2>
+            <div class="features">
+                <div class="feature" style="cursor:pointer;" onclick="setDescription('Email addresses')">
+                    <h4>📧 Email</h4>
+                    <p>Match valid email addresses</p>
+                </div>
+                <div class="feature" style="cursor:pointer;" onclick="setDescription('Phone numbers in US format')">
+                    <h4>📱 Phone Number</h4>
+                    <p>US format: (123) 456-7890</p>
+                </div>
+                <div class="feature" style="cursor:pointer;" onclick="setDescription('URLs starting with https')">
+                    <h4>🔗 URL</h4>
+                    <p>HTTPS URLs only</p>
+                </div>
+                <div class="feature" style="cursor:pointer;" onclick="setDescription('Dates in YYYY-MM-DD format')">
+                    <h4>📅 Date</h4>
+                    <p>ISO 8601 format</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>AICodeKit</h4>
+                    <p>Free AI-powered tools for developers who ship fast.</p>
+                </div>
+                <div>
+                    <h4>Tools</h4>
+                    <ul>
+                        <li><a href="/tools/code-reviewer.html">AI Code Reviewer</a></li>
+                        <li><a href="/tools/json-formatter.html">JSON Formatter</a></li>
+                        <li><a href="/tools/regex-generator.html">Regex Generator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy.html">Privacy Policy</a></li>
+                        <li><a href="/terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="copyright">© 2026 AICodeKit. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/regex-generator.js"></script>
+</body>
+</html>
